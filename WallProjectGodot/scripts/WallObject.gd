@@ -4,7 +4,10 @@ extends Node3D
 var surface_index: int= 0
 
 func _ready():
-	pass
+	var camera_position = Node3D.new()
+	camera_position.name = "CameraPosition"
+	add_child(camera_position)
+	print("CameraPosition was added")
 
 func _process(delta):
 	pass
@@ -22,7 +25,6 @@ func set_pass_surface_material_override_albedo(idx_pass: int, texture_path: Stri
 	if nextPass == null:
 		nextPass= StandardMaterial3D.new()
 		previousMaterial.set_next_pass(nextPass)
-		print("A new material was created and set in pass"  + str(idx_pass))
 	else:
 		print("A material already exists in pass"  + str(idx_pass))
 		
@@ -33,15 +35,24 @@ func set_pass_surface_material_override_albedo(idx_pass: int, texture_path: Stri
 	else:
 		print("The texture could not be loaded.")
 		
-		
+func set_camera_position(position3D: Vector3):
+	var camera_position_node = get_node("./CameraPosition")
+	if camera_position_node:
+		camera_position_node.position = position3D
+		print("Camera Position was set for", name)
+	else:
+		print("CameraPosition node not found for", name)
+
 func set_surface_material_override_albedo(texture_path: String):
 	var material: StandardMaterial3D = $MeshInstance3D.get_surface_override_material(surface_index)
 	var texture = load(texture_path)
-
+	var texture_size = texture.get_size()
+	
+	var mesh_scale = Vector3(texture_size.x / 1000, texture_size.y / 1000, 1)
+	$".".scale= mesh_scale
 	
 	material = StandardMaterial3D.new()  # Create a new StandardMaterial3D
 	$MeshInstance3D.set_surface_override_material(surface_index, material)
-	print("A new material was created and set as the override material.")
 
 	if texture:
 		material.flags_transparent = true
@@ -60,31 +71,29 @@ func set_surface_material_override(idx_pass:int, material_path: String):
 	for i in range(idx_pass + 1):
 		if heightMap:
 			material.heightmap_enabled = true
-			material.heightmap_scale= 5
+			material.heightmap_scale= 1
 			material.heightmap_texture = heightMap
-			print("The height map was loaded.")
 		else:
 			print("The height map could not be loaded")
 			
 		if ambientOcclusionMap:
 			material.ao_enabled= true
-			material.ao_light_affect = 2
+			material.ao_light_affect = 0
 			material.ao_texture = ambientOcclusionMap
-			print("The ambient occlusion map was loaded.")
 		else:
 			print("The ambient occlusion map could not be loaded")
 			
 		if normalMap:
 			material.normal_enabled= true
 			material.normal_texture = normalMap
-			material.normal_scale= 5
-			print("The normal map was loaded.")
+			material.normal_scale= 1
 		else:
 			print("The normal map could not be loaded")
 			
 		if specularMap:
+			material.metallic= 1
+			material.metallic_specular= 0.5
 			material.metallic_texture = specularMap
-			print("The specular map was loaded.")
 		else:
 			print("The specular map could not be loaded")
 			
