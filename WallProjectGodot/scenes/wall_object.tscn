@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfkgm4oqxi4ps"]
+
+[ext_resource type="Script" path="res://scripts/WallObject.gd" id="1_iopd8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gixv1"]
+size = Vector3(1.32239, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_nhh2m"]
+
+[node name="WallObject" type="Node3D"]
+script = ExtResource("1_iopd8")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161194, 0, 0)
+shape = SubResource("BoxShape3D_gixv1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_nhh2m")

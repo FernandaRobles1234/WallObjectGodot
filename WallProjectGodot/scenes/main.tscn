@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://s7i81jm75nv1"]
+
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_ni8ea"]
+[ext_resource type="PackedScene" uid="uid://bfkgm4oqxi4ps" path="res://scenes/wall_object.tscn" id="1_yc01p"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_ni8ea")
+
+[node name="WallObject" parent="." instance=ExtResource("1_yc01p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.292156)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.998041, -0.0513598, -0.0357164, 0.0528236, 0.997748, 0.0413262, 0.0335135, -0.043132, 0.998507, -0.638838, -0.103779, 0.818869)
+fov = 82.5787
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.896564, 0.442915, 0, -0.442915, 0.896564, 0, 0.687682, 2.05827)
+
+[node name="WallObject2" parent="." instance=ExtResource("1_yc01p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21708, 0, -0.292156)
