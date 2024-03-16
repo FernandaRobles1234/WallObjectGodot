@@ -3,14 +3,6 @@ extends Camera3D
 var original_position: Vector3= Vector3(0, 0, 1.3)
 var original_rotation: Vector3= Vector3(0, 0.5, 0)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 	
 # Perform a raycast every frame to check if the cursor is in front of a mesh
 func intersect_ray():
@@ -19,7 +11,7 @@ func intersect_ray():
 	var space_state = get_world_3d().direct_space_state
 
 	var parameters = PhysicsRayQueryParameters3D.create(from, to)
-	parameters.collision_mask = 1  # Ensure this matches the collision layer of your meshes
+	parameters.collision_mask = 1
 
 	var result = space_state.intersect_ray(parameters)
 	

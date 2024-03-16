@@ -2,26 +2,6 @@ extends Node3D
 
 #Constants for the wall object
 var surface_index: int= 0
-var camera_node: Node3D
-
-func _ready():
-	var static_body_3d= StaticBody3D.new()
-	$MeshInstance3D.add_child(static_body_3d)
-
-	var collision_shape_3d: CollisionShape3D= CollisionShape3D.new()
-	static_body_3d.add_child(collision_shape_3d)
-	collision_shape_3d.shape = BoxShape3D.new()
-	var vector_2= $MeshInstance3D.mesh.size
-	collision_shape_3d.shape.size= Vector3(vector_2.x, vector_2.y, 0.01)
-	
-	camera_node= Node3D.new()
-	camera_node.name = "CameraNode"
-	camera_node.position.z= 0.4
-	static_body_3d.add_child(camera_node)
-	pass
-
-func _process(delta):
-	pass
 
 func set_pass_surface_material_override_albedo(idx_pass: int, texture_path: String):
 	var material = $MeshInstance3D.get_surface_override_material(surface_index)
@@ -45,7 +25,6 @@ func set_pass_surface_material_override_albedo(idx_pass: int, texture_path: Stri
 		nextPass.albedo_texture = texture
 	else:
 		print("The texture could not be loaded.")
-
 
 func set_surface_material_override_albedo(texture_path: String):
 	var material: StandardMaterial3D = $MeshInstance3D.get_surface_override_material(surface_index)

@@ -3,16 +3,12 @@ extends Node3D
 #Initialize
 var target_position = Vector3.ZERO
 var input_enabled = true
-
 var ray_collisions: Dictionary
-
 var default_cursor = null
-var open_eye_cursor = preload("res://assets/Cursors/OpenEye.png") # Replace with the path to your custom cursor image
-var closed_eye_cursor = preload("res://assets/Cursors/ClosedEye.png") # Replace with the path to your custom cursor image
+var open_eye_cursor = preload("res://assets/Cursors/OpenEye.png") 
+var closed_eye_cursor = preload("res://assets/Cursors/ClosedEye.png") 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	$WallObject.set_surface_material_override_albedo("res://assets/Textures/Brick/material.jpg")
 	$WallObject.set_pass_surface_material_override_albedo(1, "res://assets/WallArt/Poster_Macrus.png")
 	$WallObject.set_surface_material_override(1, "res://assets/Textures/Brick/")
@@ -25,7 +21,6 @@ func _ready():
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	Input.set_custom_mouse_cursor(open_eye_cursor)
-
 
 func _process(delta):
 	ray_collisions= $Camera3D.intersect_ray()
