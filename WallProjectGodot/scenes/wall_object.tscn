@@ -1,19 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfkgm4oqxi4ps"]
+[gd_scene load_steps=3 format=3 uid="uid://bfkgm4oqxi4ps"]
 
 [ext_resource type="Script" path="res://scripts/WallObject.gd" id="1_iopd8"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_sw52j"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_s3ws5"]
-size = Vector3(1, 1, 0.01)
 
 [node name="WallObject" type="Node3D"]
 script = ExtResource("1_iopd8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("QuadMesh_sw52j")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("BoxShape3D_s3ws5")

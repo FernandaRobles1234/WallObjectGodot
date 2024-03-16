@@ -13,17 +13,15 @@ var closed_eye_cursor = preload("res://assets/Cursors/ClosedEye.png") # Replace 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	$WallObject2.set_surface_material_override_albedo("res://assets/Textures/Brick/material.jpg")
-	$WallObject2.set_pass_surface_material_override_albedo(1, "res://assets/WallArt/Grafffiti_Rat_v1.png")
-	$WallObject2.set_surface_material_override(1, "res://assets/Textures/Brick/")
-	$WallObject2.set_camera_position(Vector3(0, 0, 0))
-	
 	$WallObject.set_surface_material_override_albedo("res://assets/Textures/Brick/material.jpg")
 	$WallObject.set_pass_surface_material_override_albedo(1, "res://assets/WallArt/Poster_Macrus.png")
 	$WallObject.set_surface_material_override(1, "res://assets/Textures/Brick/")
-	$WallObject.set_camera_position(Vector3(0, 0, 0))
 	
-	$Camera3D.position = Vector3(-0.5, 0.0, 0.5) # Set the start position of the camera
+	$WallObject2.set_surface_material_override_albedo("res://assets/Textures/Brick/material.jpg")
+	$WallObject2.set_pass_surface_material_override_albedo(1, "res://assets/WallArt/Grafffiti_Rat_v1.png")
+	$WallObject2.set_surface_material_override(1, "res://assets/Textures/Brick/")
+	
+	$Camera3D.go_to_original()
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	Input.set_custom_mouse_cursor(open_eye_cursor)
@@ -42,10 +40,17 @@ func _input(event):
 		ray_collisions= $Camera3D.intersect_ray()
 		if ray_collisions and ray_collisions.has("collider"):
 			if ray_collisions.collider is StaticBody3D:
-				var collider = ray_collisions.collider
+				var collider: StaticBody3D = ray_collisions.collider
 				if collider:
-					var root_node = collider.get_tree().current_scene
-					var camera_position= root_node.find_node("CameraPosition", true, false)
-					$Camera3D.position = camera_position.position
+					var camera_node= collider.find_child("CameraNode", true, false)
+					if camera_node:
+						print(collider.position)
+						print(camera_node.position)
+						$Camera3D.go_to(camera_node.global_position, camera_node.global_rotation)
 						
+	if event is InputEventKey and event.pressed and event.keycode == KEY_Q:
+		$Camera3D.go_to_original()
+						
+	
+
 

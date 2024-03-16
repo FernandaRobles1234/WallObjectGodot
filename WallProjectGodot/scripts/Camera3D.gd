@@ -1,5 +1,7 @@
 extends Camera3D
 
+var original_position: Vector3= Vector3(0, 0, 1.3)
+var original_rotation: Vector3= Vector3(0, 0.5, 0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,3 +24,13 @@ func intersect_ray():
 	var result = space_state.intersect_ray(parameters)
 	
 	return result
+
+func go_to_original():
+	$".".position= original_position
+	$".".rotation= original_rotation
+	
+func go_to(global_position:Vector3, global_rotation:Vector3):
+	$".".position= global_position
+	$".".rotation= global_rotation
+	
+	

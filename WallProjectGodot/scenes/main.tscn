@@ -8,7 +8,7 @@
 script = ExtResource("1_ni8ea")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.957601, -0.0623482, 0.281271, 0.0528236, 0.997748, 0.0413263, -0.283214, -0.0247164, 0.958738, -0.704016, -0.103779, 0.83636)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47187, 0, 0)
 fov = 82.5787
 script = ExtResource("2_orwlr")
 
@@ -16,7 +16,9 @@ script = ExtResource("2_orwlr")
 transform = Transform3D(1, 0, 0, 0, 0.896564, 0.442915, 0, -0.442915, 0.896564, 0, 0.687682, 2.05827)
 
 [node name="WallObject2" parent="." instance=ExtResource("1_yc01p")]
-transform = Transform3D(0.585312, 0, 0.810809, 0, 1, 0, -0.810809, 0, 0.585312, -0.903403, 0, -0.215197)
+transform = Transform3D(0.585312, 0, 0.810809, 0, 1, 0, -0.810809, 0, 0.585312, -0.903403, 0, 0.569667)
+visible = true
 
 [node name="WallObject" parent="." instance=ExtResource("1_yc01p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.74225)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0452512, -0.0171443, 0.0825244)
+visible = true
