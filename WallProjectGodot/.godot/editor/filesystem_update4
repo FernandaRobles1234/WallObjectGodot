@@ -1,5 +1,2 @@
 res://scenes/main.tscn
 res://scenes/wall_object.tscn
-res://scripts/WallObject.gd
-res://scripts/Main.gd
-res://scripts/Camera3D.gd
